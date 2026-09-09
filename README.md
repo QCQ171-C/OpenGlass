@@ -47,9 +47,16 @@ msbuild OpenGlass.slnx /m /restore /p:Configuration=Release /p:Platform=x64
 
 The `main` branch is also built and tested by GitHub Actions. Its downloadable `v<version>-unsigned` artifact is an unsigned validation build, not a release or Git tag. See [Building OpenGlass](https://github.com/ALTaleX531/OpenGlass/wiki/Building-OpenGlass) for prerequisites, output paths, packaging, tests, CI behavior, and signing requirements.
 
+## Gallery
+
+![Caption](assets/Caption.png)
+
+![Highlight](assets/Highlight.png)
+
 ## Credits
 
-- [Highlight and Caption Rending Fix]: by [@arceuss](https://github.com/arceuss).
+- [Highlight and Caption Rendering Fix]: by [@arceuss](https://github.com/arceuss).
+- [Caption Picture] by [@arceuss](https://github.com/arceuss).
 - [Banner for OpenGlass](https://github.com/ALTaleX531/OpenGlass/discussions/11) by [@aubymori](https://github.com/aubymori), using [metalheart jawn #2](https://www.deviantart.com/kfh83/art/metalheart-jawn-2-1068250045) by [@kfh83](https://github.com/kfh83)
 - [[MS-RDPCR2]: Remote Desktop Protocol: Composited Remoting V2](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpcr2)
 - [KNSoft.SlimDetours](https://github.com/KNSoft/KNSoft.SlimDetours)
