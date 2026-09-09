@@ -87,13 +87,13 @@ bool GlassFrameEnhancer::MyCTopLevelAtlasedRectsVisual_ShouldCloneAtlasImage_At_
 }
 
 HRESULT GlassFrameEnhancer::MyCTopLevelWindow_CloneVisualTreeForLivePreview_Win10(uDWM::CTopLevelWindow* This,
-																				  bool windowFramesOnly, bool unused1,
-																				  bool unused2,
-																				  uDWM::CTopLevelWindow** clonedWindow)
+										  bool windowFramesOnly, bool unused1,
+										  bool unused2,
+										  uDWM::CTopLevelWindow** clonedWindow)
 {
 	g_windowFramesOnly = windowFramesOnly;
 	const auto hr = g_CTopLevelWindow_CloneVisualTreeForLivePreview_Win10_Org(This, windowFramesOnly, unused1, unused2,
-																			  clonedWindow);
+										  clonedWindow);
 	g_windowFramesOnly = !windowFramesOnly;
 
 	for (int i = 0; i < 4; i++)
@@ -112,8 +112,8 @@ HRESULT GlassFrameEnhancer::MyCTopLevelWindow_CloneVisualTreeForLivePreview_Win1
 }
 
 HRESULT GlassFrameEnhancer::MyCTopLevelWindow_CloneVisualTreeForLivePreview_Win11(uDWM::CTopLevelWindow* This,
-																				  bool windowFramesOnly,
-																				  uDWM::CTopLevelWindow** clonedWindow)
+										  bool windowFramesOnly,
+										  uDWM::CTopLevelWindow** clonedWindow)
 {
 	g_windowFramesOnly = windowFramesOnly;
 	const auto hr = g_CTopLevelWindow_CloneVisualTreeForLivePreview_Win11_Org(This, windowFramesOnly, clonedWindow);

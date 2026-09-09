@@ -14,11 +14,15 @@
         "age": 1,
         "sha256": "6be02b600a5faf80881a066b26771ee99d83fa3d8d0852ed61ec0581877d1baf"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xCC8D0"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x3BC90"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -52,9 +56,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x4719C"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD8BE0"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0x4DC08"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x6BF10"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -124,6 +136,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2BCAE0"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFE5BC"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x7BA20"
@@ -143,11 +159,15 @@
         "age": 1,
         "sha256": "f91ee4e23c899b5c694d3a3286c1e2495b59ccd3c4b6792c9fd7da5763bf2ae9"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xD19B0"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0xA0F40"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -181,9 +201,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x533DC"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD50A0"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0x599DC"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x77E10"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -253,6 +281,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2BD270"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFF4CC"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x87870"
@@ -272,11 +304,15 @@
         "age": 1,
         "sha256": "79f2e304c0a1ed1680670515501b5c250d1ff8da47bf5c1f374b49ef47f73b9a"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xD19B0"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0xA0F40"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -310,9 +346,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x533DC"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD50A0"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0x599DC"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x77E10"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -382,6 +426,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2BE270"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFF4CC"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x87870"
@@ -401,11 +449,15 @@
         "age": 1,
         "sha256": "e3291eda13c1d0eea774d1d1aea2f8459b2cf6ba856223b751b11e178c94a032"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xD19B0"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0xA0F40"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -439,9 +491,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x533DC"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD50A0"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0x599DC"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x77E10"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -511,6 +571,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2BD270"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFF4CC"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x87870"
@@ -530,11 +594,15 @@
         "age": 1,
         "sha256": "ce0aa2a3a647c049990f5a158aec95ed5376a17191e2551e6c85a31b9510183d"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xD1A40"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0xA0FD0"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -568,9 +636,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x533DC"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD5130"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0x599DC"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x77EA0"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -640,6 +716,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2BE270"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFF59C"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x87900"
@@ -659,11 +739,15 @@
         "age": 1,
         "sha256": "2060fcfb4beba8dd7f05f2e4ac49c40ffe2b6dcb326f0d936ee21a5efd38d34d"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xD1A40"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0xA0FD0"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -697,9 +781,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x533DC"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD5130"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0x599DC"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x77EA0"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -769,6 +861,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2BE270"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFF9DC"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x87900"
@@ -788,11 +884,15 @@
         "age": 1,
         "sha256": "691665dd6f07d15466993d2438f3cc5a3aa6615e44beb90703e40a6850510b1f"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xD37B0"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x2AC30"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -826,9 +926,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x31CC4"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD6830"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xE510"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x61C10"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -898,6 +1006,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2C2670"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xD2114"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x7C550"
@@ -917,11 +1029,15 @@
         "age": 1,
         "sha256": "063636ca587648e956f9991a45d79829bb627261754f0605f1d6dedbdf21b37d"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xC3C00"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x3AEE0"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -955,9 +1071,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x911F8"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD4B40"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xF130"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x67D20"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -1027,6 +1151,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2C7670"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFE3D0"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x898E0"
@@ -1046,11 +1174,15 @@
         "age": 1,
         "sha256": "39e7906ad224c6c469c768e568375ce0e76b204d710243dcb6995ad528bd3c15"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xC2F50"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x3AF40"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -1084,9 +1216,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x91068"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD4460"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xF130"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x67B90"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -1156,6 +1296,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2C5670"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFD9F0"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x89750"
@@ -1175,11 +1319,15 @@
         "age": 1,
         "sha256": "a5a0a22a8089328ffcb47a3d442f4d1f5d94729ea015cfdb52383511b9289109"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xC28B0"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x3AC10"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -1213,9 +1361,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x90D28"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD3DC0"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xF130"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x67850"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -1285,6 +1441,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2C8670"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFD390"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x89410"
@@ -1304,11 +1464,15 @@
         "age": 1,
         "sha256": "40ab79552452d349eedf05862f04dc394c35284d9b33ba4b5afa6a5b17fe7445"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xC2A80"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x3AD00"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -1342,9 +1506,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x90E18"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD3FE0"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xF220"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x67940"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -1414,6 +1586,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2CA670"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFD5B0"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x89500"
@@ -1433,11 +1609,15 @@
         "age": 1,
         "sha256": "396ee163dd70a6109d7e81c6e6888f33b9aa89cb7c23e055e12dd7c82606962b"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xC2A80"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x3AD00"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -1471,9 +1651,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x90E18"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD3FE0"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xF220"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x67940"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -1543,6 +1731,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2CA670"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFD5B0"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x89500"
@@ -1562,11 +1754,15 @@
         "age": 1,
         "sha256": "795d8f453e8986404b25e721471a4ca3fb142272b8858dab6dfc9eff42d4b13d"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xC29B0"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x3AD00"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -1600,9 +1796,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x90E18"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD3F10"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xF220"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x67940"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -1672,6 +1876,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2C9670"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFD4E0"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x89500"
@@ -1691,11 +1899,15 @@
         "age": 1,
         "sha256": "936f893c42cc40b4aeeb02b0a3d21476259b5444686156402a3791d0672303fa"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xC2A90"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x3AD00"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -1729,9 +1941,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x90E18"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD3FF0"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xF220"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x67940"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -1801,6 +2021,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2CA660"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFD5C0"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x89500"
@@ -1820,11 +2044,15 @@
         "age": 1,
         "sha256": "f3a04d9e5b5fbf1c2406410008b507e1e4b621874379ace75cf13b0013202d34"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xC2A80"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x3ACF0"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -1858,9 +2086,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x90E08"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD3FE0"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xF220"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x67930"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -1930,6 +2166,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2CA660"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFD5B0"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x894F0"
@@ -1949,11 +2189,15 @@
         "age": 1,
         "sha256": "96091c3b3e4dfc936e7cbcd259bfd391376b80fd4d9a9f702ec98a6f1ffe2b7c"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xC2B70"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x3ACF0"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -1987,9 +2231,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x90E08"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD40D0"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xF220"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x67930"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -2059,6 +2311,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2CA6A0"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFD6A0"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x894F0"
@@ -2078,11 +2334,15 @@
         "age": 1,
         "sha256": "20d2c3cc89765be5a1b0ccbe252d0b0ba5c6a3a733b6a8725b8cb7162aa93963"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xC2B70"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x3ACF0"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -2116,9 +2376,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x90E08"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD40D0"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xF220"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x67930"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -2188,6 +2456,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2CA6A0"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFD6A0"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x894F0"
@@ -2207,11 +2479,15 @@
         "age": 1,
         "sha256": "c50a527038d1526065659747c49710813f4314ce165b8728b164a6d1760e068d"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xC2D50"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x3AD00"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -2245,9 +2521,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x90E18"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD42B0"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xF220"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x67940"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -2317,6 +2601,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2CB6A0"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFD880"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x89500"
@@ -2336,11 +2624,15 @@
         "age": 1,
         "sha256": "954e27e17adf8abc6fc26140b7d5a0147887983e9b279a0ee9c362b13fe1f24a"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xC33E0"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x3AD00"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -2374,9 +2666,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x90E18"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD4940"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xF220"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x67940"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -2446,6 +2746,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2CB6A0"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFE030"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x89500"
@@ -2465,11 +2769,15 @@
         "age": 1,
         "sha256": "8850c05cc20077032898fdc2a8fc5584653e7767307d7d40da1f4b5aa5c3fda0"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xC33F0"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0x3AD00"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -2503,9 +2811,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x90EF8"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xD4950"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xF220"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x67A20"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -2575,6 +2891,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2CB6A0"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xFE0B0"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x895E0"
@@ -2594,11 +2914,15 @@
         "age": 1,
         "sha256": "f4f09408f7e08edb2986054aaff94a3393e90398d8bf5bbf41de612653404def"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xBE4E0"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0xA2E70"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -2632,9 +2956,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x7DE2C"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xC9AD0"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xE200"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x60300"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -2703,6 +3035,10 @@
         "CSolidColorLegacyMilBrush::`vftable'": {
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2CB6A0"
+        },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xF5488"
         },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
@@ -2723,11 +3059,15 @@
         "age": 1,
         "sha256": "f41350bde00344ca5f2ecb99bdea8b1d44a5ab76f5752796dc0e8bdcdb02b11b"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xBE4E0"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0xA2E70"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -2761,9 +3101,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x7DE2C"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xC9AD0"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xE200"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x60300"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -2833,6 +3181,10 @@
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2CB6A0"
         },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xF5488"
+        },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",
           "rva": "0x42C70"
@@ -2852,11 +3204,15 @@
         "age": 1,
         "sha256": "78859687bf6e56ae827be5a6f59c4728a93456e5e42e2b2a9928bad0bdaaa806"
       },
-      "resolution_contract": "73ebdee870e710693fa4bd7af9f51551954944d1a17cfe484590236935be44a3",
+      "resolution_contract": "efea80858a99a8d40ca5763f280f127134c50d68a4f7fba877d1b477eee827ed",
       "symbols": {
         "CArrayBasedCoverageSet::IsCovered.pre26100": {
           "name": "private: bool __cdecl CArrayBasedCoverageSet::IsCovered(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,int,bool)const __ptr64",
           "rva": "0xBE940"
+        },
+        "CCachedVisualImage::CCachedTarget::Update": {
+          "name": "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64",
+          "rva": "0xA32D0"
         },
         "CD2DContext::DestroyDeviceResources": {
           "name": "protected: long __cdecl CD2DContext::DestroyDeviceResources(void) __ptr64",
@@ -2890,9 +3246,17 @@
           "name": "public: void __cdecl CDrawingContext::GetClipBoundsWorld(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> * __ptr64)const __ptr64",
           "rva": "0x7E19C"
         },
+        "CDrawingContext::GetCurrentVisual": {
+          "name": "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64",
+          "rva": "0xC9F30"
+        },
         "CDrawingContext::GetUnOccludedWorldShape": {
           "name": "private: long __cdecl CDrawingContext::GetUnOccludedWorldShape(class CShape const & __ptr64,int,class CShape * __ptr64 * __ptr64) __ptr64",
           "rva": "0xE200"
+        },
+        "CDrawingContext::PreSubgraph": {
+          "name": "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64",
+          "rva": "0x60670"
         },
         "CGeometry::GetShapeData": {
           "name": "public: long __cdecl CGeometry::GetShapeData(struct D2D_SIZE_F const * __ptr64,class CShapePtr * __ptr64) __ptr64",
@@ -2961,6 +3325,10 @@
         "CSolidColorLegacyMilBrush::`vftable'": {
           "name": "const CSolidColorLegacyMilBrush::`vftable'",
           "rva": "0x2CC6A0"
+        },
+        "CVisual::GetTopLevelWindow": {
+          "name": "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64",
+          "rva": "0xF58E8"
         },
         "GetCurrentFrameId": {
           "name": "unsigned __int64 __cdecl GetCurrentFrameId(void)",

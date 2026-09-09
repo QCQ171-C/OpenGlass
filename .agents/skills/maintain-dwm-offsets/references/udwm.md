@@ -11,7 +11,7 @@ uDWM accessors are frequently inlined. Start with a constructor or creation path
 | `CWindowData` | `BlurBehindChange`, LivePreview collection, backdrop/DPI setters | Verify every flag independently; adjacency is not evidence |
 | `CTopLevelWindow` | Create, allocation, constructor, and Initialize | Track base-class and `CWindowData*` association per sample |
 | Non-client visuals | `CWindowBorder`, legacy background, caption/button/text update paths | Gate each feature and legacy variant independently |
-| LivePreview | `_CollectWindows`, resource update helper, setup/cleanup paths | Use the semantic API argument, such as a RECT passed to `IntersectRect` |
+| LivePreview | `_CollectWindows`, resource update helper, setup/cleanup paths, cloned frame visuals | Use the semantic API argument, such as a RECT passed to `IntersectRect`; keep Aero Peek highlight and reflection paths separate |
 | Acrylic/glass | `CAcrylicSheet` or `CAnimatedGlassSheet` constructors and updates | Treat replacement as a feature gate, not a neighboring-layout mapping |
 
 ## Important distinctions
@@ -29,6 +29,19 @@ uDWM accessors are frequently inlined. Start with a constructor or creation path
 - An older `CTopLevelWindow` shape may directly construct a `CVisual` base without a `CWindowData*`; a newer shape may expose a `CContainerVisual` base and a `CWindowData*` association. Use this as class-shape routing, not as a release classifier or layout proof.
 
 Do not restore superseded assumptions that one codebase generation has one immutable layout, that adjusted `this` cannot occur in uDWM, or that neighboring flags and historical slots remain fixed.
+
+## LivePreview highlight and reflection path
+
+Legacy high-glass preview support is split across uDWM object/resource setup and dwmcore draw-list repair. Audit both modules before changing runtime gates.
+
+- Treat build `20348` as the pre-Windows-11 LivePreview path because the code gates on the numeric build boundary `22000`, not the marketing family.
+- For builds before `22000`, the preview redraw hook is `CLivePreview::_UpdateInstructions`. The important semantic anchor is the existing instruction rebuild followed by `CRenderDataVisual::ClearInstructions`/`AddInstruction` on the glass visual.
+- For builds `22000+`, the preview redraw hook is `CLivePreview::_FadeOutToGlass`. The OpenGlass path calls `_UpdateResources()`, refreshes cloned `windowFrames`, adds inactive/active highlight instructions, restores preview reflection instructions, and then chains to the original DWM fade path.
+- For builds `26100+`, `CLivePreview::_UpdateResourcesForMonitorHelper` is only a resource-collection hook. It brackets the original call with the active `CTopLevelWindow` so `CreateRectRgn` interception can build the reflection region for the right window; clear the redirect state on every exit path.
+- The high-glass highlight brush uses `CTopLevelWindow::TreatAsActiveWindow`, `CTopLevelWindow::GetActualWindowRect`, and `CTopLevelWindow_GetNonClientVisual_Index`. During Aero Peek, the selected preview should render active highlight and every other preview clone should render inactive highlight.
+- The retained `LivePreviewResource` fields are the window/glass bounding rect/geometry/brush pointers and `LivePreviewResource_GetReflectionGeometry`. Do not reintroduce the removed region/non-empty flag accessors unless a runtime call site needs them and the exact binary evidence is renewed.
+- `CLivePreview_GetGlassVisual`, `CLivePreview_GetLivePreviewResourceArray`, and `CLivePreview_GetLivePreviewVisualArray` must be verified together because the preview hook mutates both instruction lists and cloned frame visuals.
+- Startup and shutdown gates for `_UpdateInstructions`, `_FadeOutToGlass`, and `_UpdateResourcesForMonitorHelper` must remain symmetric; a hook installed on an inactive symbol range is a DWM crash risk.
 
 ## Vtable values
 

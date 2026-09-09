@@ -35,6 +35,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GlassFrameHandler.hpp"><Link>Header Files\GlassFrameHandler.hpp</Link></ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GlassRealizer.hpp"><Link>Header Files\GlassRealizer.hpp</Link></ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GlassReflectionHandler.hpp"><Link>Header Files\GlassReflectionHandler.hpp</Link></ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HighlightRealizer.hpp"><Link>Header Files\HighlightRealizer.hpp</Link></ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GlassRenderer.hpp"><Link>Header Files\GlassRenderer.hpp</Link></ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GlassSafetyZoneLayer.hpp"><Link>Header Files\GlassSafetyZoneLayer.hpp</Link></ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GlassService.hpp"><Link>Header Files\GlassService.hpp</Link></ClInclude>
@@ -69,6 +70,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)dllmain.cpp"><Link>Source Files\dllmain.cpp</Link></ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GlassEngine.Registry.cpp"><Link>Source Files\GlassEngine.Registry.cpp</Link></ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GlassRealizer.cpp"><Link>Source Files\GlassRealizer.cpp</Link></ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HighlightRealizer.cpp"><Link>Source Files\HighlightRealizer.cpp</Link></ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GlassSafetyZoneLayer.cpp"><Link>Source Files\GlassSafetyZoneLayer.cpp</Link></ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GlassService.cpp"><Link>Source Files\GlassService.cpp</Link></ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HookHelper.cpp"><Link>Source Files\HookHelper.cpp</Link></ClCompile>
@@ -93,6 +95,8 @@
     <None Include="$(MSBuildThisFileDirectory)module.def"><Link>Misc Files\module.def</Link></None>
     <None Include="$(MSBuildThisFileDirectory)packages.config"><Link>Misc Files\packages.config</Link></None>
     <Image Include="$(MSBuildThisFileDirectory)reflection.png"><Link>Image Files\reflection.png</Link></Image>
+    <Image Include="$(MSBuildThisFileDirectory)highlight.png"><Link>Image Files\highlight.png</Link></Image>
+    <Image Include="$(MSBuildThisFileDirectory)sidehighlight.png"><Link>Image Files\sidehighlight.png</Link></Image>
     <ResourceCompile Include="$(MSBuildThisFileDirectory)OpenGlass.rc"><Link>Resource Files\OpenGlass.rc</Link></ResourceCompile>
   </ItemGroup>
   <ItemGroup>

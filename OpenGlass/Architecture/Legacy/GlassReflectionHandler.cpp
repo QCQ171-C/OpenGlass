@@ -4,6 +4,7 @@
 #include "dwmcoreProjection.hpp"
 #include "Shared.hpp"
 #include "GlassReflectionBrush.hpp"
+#include "GlassHighlightBrush.hpp"
 #include "GlassKernel.hpp"
 #include "DetourChains.hpp"
 
@@ -68,6 +69,7 @@ namespace OpenGlass::GlassReflectionHandler
 		const uDWM::CTopLevelWindow* window,
 		uDWM::LivePreviewResource* resource
 	);
+	HRESULT UpdateLivePreviewHighlights(uDWM::CLivePreview* This);
 	
 	DetourChains::RenderDataTryDrawCommandAsDrawListWin10ReflectionNode g_CRenderData_TryDrawCommandAsDrawList_Win10_Org{};
 	DetourChains::RenderDataTryDrawCommandAsDrawListWin11ReflectionNode g_CRenderData_TryDrawCommandAsDrawList_Win11_Org{};
@@ -156,9 +158,9 @@ namespace OpenGlass::GlassReflectionHandler
 			const auto brush = GlassReflectionBrush::GetOrCreate(m_visual.get(), 0);
 			RETURN_IF_FAILED(
 				brush->Update(
-					(Shared::g_reflectionPolicy & Shared::ReflectionPolicy::AnimatedGlassSheet) ? 
-					1.f : 
-					0.f,
+				(Shared::g_reflectionPolicy & Shared::ReflectionPolicy::AnimatedGlassSheet) ?
+				GlassKernel::ImageOpacityReinterpreter(true, false, true, true).ToFloat() :
+				0.f,
 					GlassReflectionBrush::CalculateTargetViewport(
 						{ lprc->left, lprc->top }
 					),
@@ -198,7 +200,6 @@ namespace OpenGlass::GlassReflectionHandler
 	};
 	std::unordered_map<uDWM::CAnimatedGlassSheet*, winrt::com_ptr<CAnimatedReflectionSheet>> g_sheetMap{};
 }
-
 template <typename T>
 HRESULT GlassReflectionHandler::MyCRenderData_TryDrawCommandAsDrawList(
 	dwmcore::CRenderData* This,
@@ -423,9 +424,6 @@ void GlassReflectionHandler::MyCAnimatedGlassSheet_Destructor(uDWM::CAnimatedGla
 	return g_CAnimatedGlassSheet_Destructor_Org(This);
 }
 
-// here restores
-// CLivePreview::_UpdateGlassVisual
-// CLivePreview::_UpdateInstructions
 HRESULT GlassReflectionHandler::MyCLivePreview__FadeOutToGlass(uDWM::CLivePreview* This)
 {
 	RETURN_IF_FAILED(This->_UpdateResources());
@@ -435,29 +433,40 @@ HRESULT GlassReflectionHandler::MyCLivePreview__FadeOutToGlass(uDWM::CLivePrevie
 		auto& windowFrames = visual.windowFrames;
 		if (windowFrames)
 		{
-			windowFrames->GetTransformParent()->GetVisualCollection()->Remove(windowFrames);
+			RETURN_IF_FAILED(
+				windowFrames->GetTransformParent()->GetVisualCollection()->Remove(
+					windowFrames
+				)
+			);
 			windowFrames->Release();
 			windowFrames = nullptr;
 		}
+
 		if (!windowFrames)
 		{
-			visual.data->GetWindow()->CloneVisualTreeForLivePreview(true, &windowFrames);
-			This->GetGlassVisual()->GetVisualCollection()->InsertRelative(
-				windowFrames,
-				nullptr,
-				false,
-				true
+			RETURN_IF_FAILED(
+				visual.data->GetWindow()->CloneVisualTreeForLivePreview(
+					true,
+					&windowFrames
+				)
+			);
+			RETURN_IF_FAILED(
+				This->GetGlassVisual()->GetVisualCollection()->InsertRelative(
+					windowFrames,
+					nullptr,
+					false,
+					true
+				)
 			);
 		}
 	}
+
+	RETURN_IF_FAILED(UpdateLivePreviewHighlights(This));
 	RETURN_IF_FAILED(This->ClearInstructions());
 	RETURN_IF_FAILED(This->GetGlassVisual()->ClearInstructions());
 	for (const auto& resource : This->GetLivePreviewResourceArray()->views())
 	{
-		//if (resource.IsWindowBoundingRectNotEmpty())
-		if (
-			!IsRectEmpty(resource.GetWindowBoundingRect())
-		)
+		if (!IsRectEmpty(resource.GetWindowBoundingRect()))
 		{
 			winrt::com_ptr<uDWM::CDrawGeometryInstruction> instruction{ nullptr };
 			if (
@@ -490,9 +499,9 @@ HRESULT GlassReflectionHandler::MyCLivePreview__FadeOutToGlass(uDWM::CLivePrevie
 				RETURN_IF_FAILED(This->AddInstruction(instruction.get()));
 			}
 		}
-		//if (resource.IsGlassBoundingRectNotEmpty())
+
 		if (
-			!IsRectEmpty(resource.GetGlassBoundingRect()) && 
+			!IsRectEmpty(resource.GetGlassBoundingRect()) &&
 			resource.GetReflectionGeometry()
 		)
 		{
@@ -508,7 +517,7 @@ HRESULT GlassReflectionHandler::MyCLivePreview__FadeOutToGlass(uDWM::CLivePrevie
 				RETURN_IF_FAILED(
 					brush->Update(
 						(Shared::g_reflectionPolicy & Shared::ReflectionPolicy::LivePreview) ?
-						1.f :
+						GlassKernel::ImageOpacityReinterpreter(true, false, true, true).ToFloat() :
 						0.f,
 						GlassReflectionBrush::CalculateTargetViewport(
 							This->GetGlassVisual()->GetLocalToParentVisualOffset(This->GetTransformParent())
@@ -542,13 +551,108 @@ HRESULT GlassReflectionHandler::MyCLivePreview__FadeOutToGlass(uDWM::CLivePrevie
 
 	return g_CLivePreview__FadeOutToGlass_Org(This);
 }
+
+HRESULT GlassReflectionHandler::UpdateLivePreviewHighlights(uDWM::CLivePreview* This)
+{
+	for (auto& visual : This->GetLivePreviewVisualArray()->views())
+	{
+		if (
+			auto& windowFrames = visual.windowFrames;
+			windowFrames
+		)
+		{
+			if (
+				const auto nonClientVisual = windowFrames->GetNonClientVisual();
+				nonClientVisual &&
+				visual.data &&
+				visual.data->GetWindow()
+			)
+			{
+				if (
+					const auto brush = GlassHighlightBrush::GetOrCreate(
+						windowFrames,
+						0,
+						true
+					);
+					brush
+				)
+				{
+					const auto window = visual.data->GetWindow();
+					const auto active = window->TreatAsActiveWindow();
+
+					RECT windowRect{};
+					window->GetActualWindowRect(&windowRect, true, true, false);
+
+					RETURN_IF_FAILED(
+						brush->Update(
+							(Shared::g_reflectionPolicy & Shared::ReflectionPolicy::NonClient) ?
+							GlassKernel::ImageOpacityReinterpreter(active, false, false, false, true).ToFloat() :
+							0.f,
+							GlassHighlightBrush::CalculateTargetViewport(
+								{ windowRect.left, windowRect.top },
+								{ windowRect.right, windowRect.bottom },
+								nonClientVisual->GetScale()
+							),
+							D2D1::RectF(),
+							nullptr,
+							DWM::MilBrushMappingMode::Absolute,
+							DWM::MilBrushMappingMode::Absolute,
+							nullptr,
+							nullptr,
+							DWM::MilStretch::None,
+							DWM::MilTileMode::Extend,
+							DWM::MilHorizontalAlignment::Left,
+							DWM::MilVerticalAlignment::Top,
+							nullptr
+						)
+					);
+
+					wil::unique_hrgn region
+					{
+						CreateRoundRectRgn(
+							windowRect.left,
+							windowRect.top,
+							windowRect.right,
+							windowRect.bottom,
+							Shared::g_roundRectRadius,
+							Shared::g_roundRectRadius
+						)
+					};
+					RETURN_LAST_ERROR_IF_NULL(region);
+
+					winrt::com_ptr<uDWM::CRgnGeometryProxy> geometry{ nullptr };
+					RETURN_IF_FAILED(
+						uDWM::ResourceHelper::CreateGeometryFromHRGN(
+							region.get(),
+							geometry.put()
+						)
+					);
+
+					winrt::com_ptr<uDWM::CDrawGeometryInstruction> instruction{};
+					RETURN_IF_FAILED(
+						uDWM::CDrawGeometryInstruction::Create(
+							brush.get(),
+							geometry.get(),
+							instruction.put()
+						)
+					);
+					RETURN_IF_FAILED(nonClientVisual->AddInstruction(instruction.get()));
+				}
+			}
+		}
+	}
+
+	return S_OK;
+}
+
 HRESULT GlassReflectionHandler::MyCLivePreview__UpdateInstructions(uDWM::CLivePreview* This)
 {
 	const auto hr = g_CLivePreview__UpdateInstructions_Org(This);
 
+	RETURN_IF_FAILED(UpdateLivePreviewHighlights(This));
+
 	for (const auto& resource : This->GetLivePreviewResourceArray()->views())
 	{
-		//if (resource.IsGlassBoundingRectNotEmpty())
 		if (
 			!IsRectEmpty(resource.GetGlassBoundingRect()) && 
 			resource.GetReflectionGeometry()
@@ -566,7 +670,7 @@ HRESULT GlassReflectionHandler::MyCLivePreview__UpdateInstructions(uDWM::CLivePr
 				RETURN_IF_FAILED(
 					brush->Update(
 						(Shared::g_reflectionPolicy & Shared::ReflectionPolicy::LivePreview) ?
-						1.f :
+						GlassKernel::ImageOpacityReinterpreter(true, false, true, true).ToFloat() :
 						0.f,
 						GlassReflectionBrush::CalculateTargetViewport(
 							This->GetGlassVisual()->GetLocalToParentVisualOffset(This->GetTransformParent())

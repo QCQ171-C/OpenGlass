@@ -96,6 +96,21 @@
       "kind": "projected_variable"
     },
     {
+      "name": "Symbol_CVisual_GetTopLevelWindow",
+      "id": "CVisual::GetTopLevelWindow",
+      "bindings": [
+        {
+          "symbol_names": [
+            "public: unsigned __int64 __cdecl CVisual::GetTopLevelWindow(void)const __ptr64"
+          ],
+          "min_inclusive": null,
+          "max_exclusive": null
+        }
+      ],
+      "requirement": "required",
+      "target": "&CVisual::GetTopLevelWindow",
+      "kind": "projected_function"
+    },    {
       "name": "Symbol_CMatrixStack_GetTopByReference",
       "id": "CMatrixStack::GetTopByReference",
       "bindings": [
@@ -201,8 +216,8 @@
         }
       ],
       "requirement": "required",
-      "target": "&CRegionShape::dtor",
-      "kind": "projected_variable"
+      "target": "&CRegionShape::Destroy",
+      "kind": "projected_function"
     },
     {
       "name": "Symbol_CRenderDataBuilder_DrawGeometry",
@@ -475,6 +490,56 @@
       "notes": "Paired PDBs for 26100.1, 26100.3624, and 26100.3775 expose no complete name for CArrayBasedCoverageSet::IsCovered; do not infer class removal because the implementation may be inlined. The emitted symbol first resolves at 26100.3912. This implementation scans 36-byte coverage entries. DrawVisualTree calls it, but GetOptimizedRect still uses GetLargestOccluder directly; keep the direct GetOptimizedRect detour active throughout this interval."
     },
     {
+      "name": "Symbol_CCachedVisualImage_RenderTargetBitmapInfo_Update",
+      "id": "CCachedVisualImage::RenderTargetBitmapInfo::Update",
+      "bindings": [
+        {
+          "symbol_names": [
+            "public: long __cdecl CCachedVisualImage::RenderTargetBitmapInfo::Update(struct MilRectF const & __ptr64,class DisplayId,bool,enum MilStretch::Enum) __ptr64"
+          ],
+          "min_inclusive": null,
+          "max_exclusive": {
+            "build": 19041,
+            "revision": 0
+          }
+        }
+      ],
+      "requirement": "required",
+      "kind": "raw",
+      "type": "HRESULT (*)(CCachedVisualImage::CCachedTarget*, const D2D1_RECT_F&, DisplayId, bool, DWM::MilStretch)"
+    },
+    {
+      "name": "Symbol_CCachedVisualImage_CCachedTarget_Update",
+      "id": "CCachedVisualImage::CCachedTarget::Update",
+      "bindings": [
+        {
+          "symbol_names": [
+            "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct MilRectF,struct Mil3DRectF,struct MilPointAndSizeF,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64"
+          ],
+          "min_inclusive": {
+            "build": 19041,
+            "revision": 0
+          },
+          "max_exclusive": {
+            "build": 26100,
+            "revision": 0
+          }
+        },
+        {
+          "symbol_names": [
+            "public: long __cdecl CCachedVisualImage::CCachedTarget::Update(class TMilRect_<float,struct D2D_RECT_F,struct D3D_RECT_F,struct D2D_POINTANDSIZE_F,struct RectUniqueness::NotNeeded> const & __ptr64,enum MilStretch::Enum,class RenderTargetInfo const & __ptr64) __ptr64"
+          ],
+          "min_inclusive": {
+            "build": 26100,
+            "revision": 0
+          },
+          "max_exclusive": null
+        }
+      ],
+      "requirement": "required",
+      "kind": "raw",
+      "type": "HRESULT (*)(CCachedVisualImage::CCachedTarget*, const D2D1_RECT_F&, DWM::MilStretch, const RenderTargetInfo&)"
+    },    {
       "name": "Symbol_CD2DContext_DestroyDeviceResources",
       "id": "CD2DContext::DestroyDeviceResources",
       "bindings": [
@@ -584,6 +649,34 @@
       "kind": "projected_function"
     },
     {
+      "name": "Symbol_CDrawingContext_GetCurrentVisual",
+      "id": "CDrawingContext::GetCurrentVisual",
+      "bindings": [
+        {
+          "symbol_names": [
+            "public: virtual class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64"
+          ],
+          "min_inclusive": null,
+          "max_exclusive": {
+            "build": 26100,
+            "revision": 0
+          }
+        },
+        {
+          "symbol_names": [
+            "public: class CVisual * __ptr64 __cdecl CDrawingContext::GetCurrentVisual(void)const __ptr64"
+          ],
+          "min_inclusive": {
+            "build": 26100,
+            "revision": 0
+          },
+          "max_exclusive": null
+        }
+      ],
+      "requirement": "required",
+      "target": "&CDrawingContext::GetCurrentVisual",
+      "kind": "projected_function"
+    },    {
       "name": "Symbol_CDrawingContext_GetClipBoundsWorld_Pre26100",
       "id": "CDrawingContext::GetClipBoundsWorld",
       "bindings": [
@@ -678,6 +771,21 @@
       "kind": "projected_function"
     },
     {
+      "name": "Symbol_CDrawingContext_PreSubgraph",
+      "id": "CDrawingContext::PreSubgraph",
+      "bindings": [
+        {
+          "symbol_names": [
+            "public: long __cdecl CDrawingContext::PreSubgraph(class CVisualTree const * __ptr64,bool * __ptr64) __ptr64"
+          ],
+          "min_inclusive": null,
+          "max_exclusive": null
+        }
+      ],
+      "requirement": "required",
+      "kind": "raw",
+      "type": "HRESULT (*)(CDrawingContext*, const CVisualTree*, bool*)"
+    },    {
       "name": "Symbol_CDrawingContext_DrawVisualTree_17763",
       "id": "CDrawingContext::DrawVisualTree.17763",
       "bindings": [

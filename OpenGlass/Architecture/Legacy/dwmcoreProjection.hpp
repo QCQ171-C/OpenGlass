@@ -62,6 +62,11 @@ namespace OpenGlass::dwmcore
 	};
 	struct CVisual : CResource
 	{
+		inline HWND GetTopLevelWindow() const
+		{
+			OPENGLASS_MUSTTAIL
+			return Projection::Invoke<&CVisual::GetTopLevelWindow>(this);
+		}
 	};
 	struct CFloatResource : CResource
 	{
@@ -357,12 +362,16 @@ namespace OpenGlass::dwmcore
 	struct CRegionShape : CShape
 	{
 		static inline PVOID* vftable{nullptr};
-		static inline PVOID dtor{nullptr};
 
 		inline HRESULT BuildFromRects(const D2D1_RECT_L* buffer, UINT count)
 		{
 			OPENGLASS_MUSTTAIL
 			return Projection::Invoke<&CRegionShape::BuildFromRects>(this, buffer, count);
+		}
+		inline void Destroy()
+		{
+			OPENGLASS_MUSTTAIL
+			return Projection::Invoke<&CRegionShape::Destroy>(this);
 		}
 	};
 	// valid until (build, revision)
@@ -393,8 +402,7 @@ namespace OpenGlass::dwmcore
 		}
 		~CRegionShapeImpl()
 		{
-			std::invoke(Util::force_cast_to<void (CRegionShape::*)()>(CRegionShape::dtor),
-						reinterpret_cast<CRegionShape*>(this));
+			reinterpret_cast<CRegionShape*>(this)->Destroy();
 		}
 		CRegionShape* As()
 		{
@@ -609,6 +617,12 @@ namespace OpenGlass::dwmcore
 	struct COcclusionInfo;
 	struct CCompositionSurfaceInfo;
 	struct ISwapChainRealization;
+	struct CCachedVisualImage : CResource
+	{
+		struct CCachedTarget : CResource
+		{
+		};
+	};
 	struct CDrawingContext
 	{
 		// since windows 10 2004
@@ -689,6 +703,15 @@ namespace OpenGlass::dwmcore
 		{
 			OPENGLASS_MUSTTAIL
 			return Projection::Invoke<&CDrawingContext::ApplyRenderStateInternal>(this, skipFlushingDeferredClipping);
+		}
+		inline CVisual* GetCurrentVisual() const
+		{
+			OPENGLASS_MUSTTAIL
+			return Projection::Invoke<&CDrawingContext::GetCurrentVisual>(this);
+		}
+		inline CVisual* GetCurrentVisualHelper() const
+		{
+			return (g_versionInfo.build >= os::build_w11_24h2 ? this : reinterpret_cast<const CDrawingContext*>(GetD2DContextOwner()))->GetCurrentVisual();
 		}
 		float GetSDRBoost() const
 		{

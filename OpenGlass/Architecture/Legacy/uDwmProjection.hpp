@@ -908,6 +908,10 @@ namespace OpenGlass::uDWM
 		{
 			return *CTopLevelWindow_GetClientBlurVisual_Index.address(this);
 		}
+		inline CCanvasVisual* GetNonClientVisual() const
+		{
+			return *CTopLevelWindow_GetNonClientVisual_Index.address(this);
+		}
 		inline CWindowBorder* GetWindowBorder() const
 		{
 			return *CTopLevelWindow_GetWindowBorder_Index.address(this);
@@ -1138,22 +1142,9 @@ namespace OpenGlass::uDWM
 			return *LivePreviewResource_GetGlassVisualBrush.address(this);
 		}
 
-		inline HRGN GetReflectionRegion() const
-		{
-			return *LivePreviewResource_GetReflectionRegion.address(this);
-		}
 		inline CRgnGeometryProxy* GetReflectionGeometry() const
 		{
 			return *LivePreviewResource_GetReflectionGeometry.address(this);
-		}
-
-		inline bool IsWindowBoundingRectNotEmpty() const
-		{
-			return *LivePreviewResource_IsWindowBoundingRectNotEmpty_Index.address(this);
-		}
-		inline bool IsGlassBoundingRectNotEmpty() const
-		{
-			return *LivePreviewResource_IsGlassBoundingRectNotEmpty_Index.address(this);
 		}
 	};
 	struct CLivePreview : CRenderDataVisual

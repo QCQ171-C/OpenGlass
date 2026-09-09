@@ -61,6 +61,8 @@ namespace OpenGlass::dwmcore
 	struct CTreeDirty;
 	struct CVisual;
 	struct CVisualTree;
+	enum class DisplayId : DWORD;
+	struct CCachedVisualImage;
 	struct CHwndRenderTarget;
 	struct CDirtyRegion;
 	struct CRegion;

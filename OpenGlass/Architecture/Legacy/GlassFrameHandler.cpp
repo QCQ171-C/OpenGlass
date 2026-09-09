@@ -6,6 +6,7 @@
 #include "dwmcoreProjection.hpp"
 #include "GlassEffectBrush.hpp"
 #include "GlassReflectionBrush.hpp"
+#include "GlassHighlightBrush.hpp"
 #include "DetourChains.hpp"
 
 using namespace OpenGlass;
@@ -28,6 +29,8 @@ namespace OpenGlass::GlassFrameHandler
 	Projection::Detour<uDWM::Symbol_CTopLevelWindow__CTopLevelWindow, &MyCTopLevelWindow_Destructor> g_CTopLevelWindow_Destructor_Org{};
 
 	HRESULT UpdateReflectionViewport(uDWM::CTopLevelWindow* window);
+	HRESULT UpdateHighlightViewport(uDWM::CTopLevelWindow* window);
+	HRESULT UpdateHighlightGeometry(uDWM::CTopLevelWindow* window);
 }
 
 HRESULT GlassFrameHandler::UpdateReflectionViewport(uDWM::CTopLevelWindow* window)
@@ -154,6 +157,121 @@ HRESULT GlassFrameHandler::UpdateReflectionViewport(uDWM::CTopLevelWindow* windo
 	return S_OK;
 }
 
+HRESULT GlassFrameHandler::UpdateHighlightViewport(uDWM::CTopLevelWindow* window)
+{
+	const auto active = window->TreatAsActiveWindow();
+	const auto maximized = window->TreatAsMaximized();
+	const auto sheetOfGlass = window->GetData()->IsSheetOfGlass();
+	const auto insideMargins = window->GetFrameInsideMargins();
+	const auto outsideMargins = window->GetFrameOutsideMargins(maximized);
+	RECT windowRect{};
+	window->GetActualWindowRect(&windowRect, true, false, true);
+	const auto opacity = GlassKernel::ImageOpacityReinterpreter(active, maximized, false, false, sheetOfGlass).ToFloat();
+	if (
+		const auto legacyVisual = window->GetLegacyVisual();
+		legacyVisual
+	)
+	{
+		if (
+			const auto brush = GlassHighlightBrush::GetOrCreate(window, 0);
+			brush &&
+			!window->IsOffscreen()
+		)
+		{
+			RETURN_IF_FAILED(
+				brush->Update(
+					(Shared::g_reflectionPolicy & Shared::ReflectionPolicy::NonClient) ?
+					opacity :
+					0.f,
+					GlassHighlightBrush::CalculateTargetViewport(
+						{ maximized ? 0 : windowRect.left, maximized ? 0 : windowRect.top },
+						{ maximized ? legacyVisual->GetWidth() : windowRect.right, maximized ? legacyVisual->GetHeight() : windowRect.bottom },
+						legacyVisual->GetScale()
+					),
+					D2D1::RectF(
+						static_cast<FLOAT>(insideMargins.cxLeftWidth - outsideMargins.cxLeftWidth),
+						static_cast<FLOAT>(insideMargins.cyTopHeight - outsideMargins.cyTopHeight),
+						static_cast<FLOAT>(insideMargins.cxRightWidth - outsideMargins.cxRightWidth),
+						static_cast<FLOAT>(insideMargins.cyBottomHeight - outsideMargins.cyBottomHeight)
+					),
+					nullptr,
+					DWM::MilBrushMappingMode::Absolute,
+					DWM::MilBrushMappingMode::Absolute,
+					nullptr,
+					nullptr,
+					DWM::MilStretch::None,
+					DWM::MilTileMode::Extend,
+					DWM::MilHorizontalAlignment::Left,
+					DWM::MilVerticalAlignment::Top,
+					nullptr
+				)
+			);
+		}
+	}
+
+	return S_OK;
+}
+
+HRESULT GlassFrameHandler::UpdateHighlightGeometry(uDWM::CTopLevelWindow* window)
+{
+	if (window->IsOffscreen())
+	{
+		return S_OK;
+	}
+
+	const auto maximized = window->TreatAsMaximized();
+	const auto sheetOfGlass = window->GetData()->IsSheetOfGlass();
+	const auto outsideMargins = window->GetFrameOutsideMargins(maximized);
+	const auto insideMargins = window->GetFrameInsideMargins();
+
+	int x1 = outsideMargins.cxLeftWidth + 1;
+	int y1 = outsideMargins.cyTopHeight + 1;
+	int x2 = window->GetSize().cx - outsideMargins.cxRightWidth - 1;
+	int y2 = window->GetSize().cy - outsideMargins.cyBottomHeight - 1;
+	int wxh = maximized || Shared::g_roundRectRadius < 0 ? 0 : 2 * Shared::g_roundRectRadius;
+
+	wil::unique_hrgn outsideRegion
+	{
+		CreateRoundRectRgn(
+			x1,
+			y1,
+			((x1 > x2) ? x1 : x2) + 1,
+			((y1 > y2) ? y1 : y2) + 1,
+			wxh,
+			wxh
+		)
+	};
+	RETURN_LAST_ERROR_IF_NULL(outsideRegion);
+
+	if (sheetOfGlass)
+	{
+		GlassHighlightBrush::CreateOrUpdateGeometry(window, 0, outsideRegion.get());
+		return S_OK;
+	}
+
+	x1 = insideMargins.cxLeftWidth - 1;
+	y1 = insideMargins.cyTopHeight - 1;
+	x2 = window->GetSize().cx - insideMargins.cxRightWidth + 1;
+	y2 = window->GetSize().cy - insideMargins.cyBottomHeight + 1;
+
+	wil::unique_hrgn insideRegion
+	{
+		CreateRoundRectRgn(
+			x1,
+			y1,
+			((x1 > x2) ? x1 : x2) + 1,
+			((y1 > y2) ? y1 : y2) + 1,
+			2,
+			2
+		)
+	};
+	RETURN_LAST_ERROR_IF_NULL(insideRegion);
+
+	RETURN_IF_WIN32_BOOL_FALSE(CombineRgn(outsideRegion.get(), outsideRegion.get(), insideRegion.get(), RGN_DIFF));
+	GlassHighlightBrush::CreateOrUpdateGeometry(window, 0, outsideRegion.get());
+
+	return S_OK;
+}
 void GlassFrameHandler::MyCGlassColorizationParameters_AdjustWindowColorization(
 	uDWM::CGlassColorizationParameters* This,
 	[[maybe_unused]] const uDWM::GpCC* colorUnused,
@@ -206,6 +324,11 @@ HRESULT GlassFrameHandler::MyCTopLevelWindow_UpdateNCAreaBackground(uDWM::CTopLe
 			0,
 			true
 		);
+		const auto highlightBrush = GlassHighlightBrush::GetOrCreate(
+			This,
+			0,
+			true
+		);
 		if (!effectBrush)
 		{
 			effectBrush = GlassEffectBrush::GetOrCreate(This, true);
@@ -238,6 +361,9 @@ HRESULT GlassFrameHandler::MyCTopLevelWindow_UpdateNCAreaBackground(uDWM::CTopLe
 
 		if (brush.get() != effectBrush.get())
 		{
+			RETURN_IF_FAILED(UpdateHighlightGeometry(This));
+			const auto highlightGeometry = GlassHighlightBrush::CreateOrUpdateGeometry(This, 0);
+
 			RETURN_IF_FAILED(legacyVisual->ClearInstructions());
 			winrt::com_ptr<uDWM::CDrawGeometryInstruction> instruction{};
 			RETURN_IF_FAILED(
@@ -252,6 +378,14 @@ HRESULT GlassFrameHandler::MyCTopLevelWindow_UpdateNCAreaBackground(uDWM::CTopLe
 				uDWM::CDrawGeometryInstruction::Create(
 					reflectionBrush.get(),
 					captionGeometry.get(),
+					instruction.put()
+				)
+			);
+			RETURN_IF_FAILED(legacyVisual->AddInstruction(instruction.get()));
+			RETURN_IF_FAILED(
+				uDWM::CDrawGeometryInstruction::Create(
+					highlightBrush.get(),
+					highlightGeometry.get(),
 					instruction.put()
 				)
 			);
@@ -441,6 +575,8 @@ HRESULT GlassFrameHandler::MyCTopLevelWindow_ValidateVisual(uDWM::CTopLevelWindo
 	{
 		GlassKernel::g_window = nullptr;
 		LOG_IF_FAILED(UpdateReflectionViewport(This));
+		LOG_IF_FAILED(UpdateHighlightViewport(This));
+		LOG_IF_FAILED(UpdateHighlightGeometry(This));
 	});
 	
 	return g_CTopLevelWindow_ValidateVisual_Org(This);
@@ -449,6 +585,7 @@ HRESULT GlassFrameHandler::MyCTopLevelWindow_ValidateVisual(uDWM::CTopLevelWindo
 void GlassFrameHandler::MyCTopLevelWindow_Destructor(uDWM::CTopLevelWindow* This)
 {
 	GlassReflectionBrush::Remove(This);
+	GlassHighlightBrush::Remove(This);
 	GlassEffectBrush::Remove(This);
 	return g_CTopLevelWindow_Destructor_Org(This);
 }
@@ -502,4 +639,5 @@ void GlassFrameHandler::Shutdown()
 
 void GlassFrameHandler::Cleanup()
 {
+	GlassHighlightBrush::RemoveAll();
 }

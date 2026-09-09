@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.SourceLink.GitHub.10.0.400\build\Microsoft.SourceLink.GitHub.props" Condition="Exists('..\packages\Microsoft.SourceLink.GitHub.10.0.400\build\Microsoft.SourceLink.GitHub.props')" />
+  <Import Project="..\packages\Microsoft.SourceLink.Common.10.0.400\build\Microsoft.SourceLink.Common.props" Condition="Exists('..\packages\Microsoft.SourceLink.Common.10.0.400\build\Microsoft.SourceLink.Common.props')" />
+  <Import Project="..\packages\Microsoft.Build.Tasks.Git.10.0.400\build\Microsoft.Build.Tasks.Git.props" Condition="Exists('..\packages\Microsoft.Build.Tasks.Git.10.0.400\build\Microsoft.Build.Tasks.Git.props')" />
   <Import Project="..\Common\NuGet.props" Condition="Exists('..\Common\NuGet.props')" />
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|x64"><Configuration>Debug</Configuration><Platform>x64</Platform></ProjectConfiguration>
-    <ProjectConfiguration Include="Release|x64"><Configuration>Release</Configuration><Platform>x64</Platform></ProjectConfiguration>
-    <ProjectConfiguration Include="ReleaseSigned|x64"><Configuration>ReleaseSigned</Configuration><Platform>x64</Platform></ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseSigned|x64">
+      <Configuration>ReleaseSigned</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <ProjectGuid>{80009307-7B06-4785-AF83-3F5D6DB7DEB6}</ProjectGuid>
     <RootNamespace>OpenGlass</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Label="CppProject.SharedInputs">
     <CppProjectModuleDef>module.def</CppProjectModuleDef>
@@ -19,6 +32,9 @@
   <Import Project="..\Common\CppProject.Configuration.props" />
   <PropertyGroup Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <Import Project="..\Common\CppProject.props" />
@@ -60,6 +76,7 @@
     <ClInclude Include="Architecture\Legacy\GlassIntegrity.hpp" />
     <ClInclude Include="Architecture\Legacy\GlassKernel.hpp" />
     <ClInclude Include="Architecture\Legacy\GlassReflectionBrush.hpp" />
+    <ClInclude Include="Architecture\Legacy\GlassHighlightBrush.hpp" />
     <ClInclude Include="Architecture\Legacy\ReflectionRealizer.hpp" />
     <ClInclude Include="Architecture\Legacy\uDwmProjection.hpp" />
     <ClInclude Include="Architecture\Legacy\uDwmProjection.Offsets.hpp" />
@@ -78,6 +95,7 @@
     <ClCompile Include="Architecture\Legacy\GlassIntegrity.cpp" />
     <ClCompile Include="Architecture\Legacy\GlassKernel.cpp" />
     <ClCompile Include="Architecture\Legacy\GlassReflectionBrush.cpp" />
+    <ClCompile Include="Architecture\Legacy\GlassHighlightBrush.cpp" />
     <ClCompile Include="Architecture\Legacy\GlassReflectionHandler.cpp" />
     <ClCompile Include="Architecture\Legacy\GlassRenderer.cpp" />
     <ClCompile Include="Architecture\Legacy\OpenGlass.cpp" />
@@ -107,21 +125,44 @@
     <SymbolCatalogSource Include="SymbolCatalogs\legacy\dwmcore\26100.json" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='ReleaseSigned'">
-    <ClCompile><PreprocessorDefinitions>OPENGLASS_ENFORCE_SIGNING=1;%(PreprocessorDefinitions)</PreprocessorDefinitions></ClCompile>
+    <ClCompile>
+      <PreprocessorDefinitions>OPENGLASS_ENFORCE_SIGNING=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <Target Name="GenerateProjectionMetadata"
-          BeforeTargets="ClCompile"
-          Inputs="$(ProjectionSchemaDir)\udwm.json;$(ProjectionSchemaDir)\dwmcore.json;@(SymbolCatalogSource);$(ProjectDir)..\Scripts\projection_codegen.py;$(ProjectDir)..\Scripts\projection_schema.py;$(ProjectDir)..\Scripts\projection_emit.py;$(ProjectDir)..\Scripts\projection_source_check.py;$(ProjectDir)..\Scripts\symbol_catalog.py;$(ProjectDir)OSHelper.hpp;@(ClCompile);@(ClInclude)"
-          Outputs="$(ProjectionGeneratedDir)\udwm.Layouts.generated.hpp;$(ProjectionGeneratedDir)\udwm.Symbols.generated.hpp;$(ProjectionGeneratedDir)\dwmcore.Layouts.generated.hpp;$(ProjectionGeneratedDir)\dwmcore.Symbols.generated.hpp;$(ProjectionGeneratedDir)\ProjectionRegistry.generated.inc;$(ProjectionGeneratedDir)\SymbolCatalog.generated.hpp;$(ProjectionGeneratedDir)\SymbolCatalog.generated.inc">
+  <Target Name="GenerateProjectionMetadata" BeforeTargets="ClCompile" Inputs="$(ProjectionSchemaDir)\udwm.json;$(ProjectionSchemaDir)\dwmcore.json;@(SymbolCatalogSource);$(ProjectDir)..\Scripts\projection_codegen.py;$(ProjectDir)..\Scripts\projection_schema.py;$(ProjectDir)..\Scripts\projection_emit.py;$(ProjectDir)..\Scripts\projection_source_check.py;$(ProjectDir)..\Scripts\symbol_catalog.py;$(ProjectDir)OSHelper.hpp;@(ClCompile);@(ClInclude)" Outputs="$(ProjectionGeneratedDir)\udwm.Layouts.generated.hpp;$(ProjectionGeneratedDir)\udwm.Symbols.generated.hpp;$(ProjectionGeneratedDir)\dwmcore.Layouts.generated.hpp;$(ProjectionGeneratedDir)\dwmcore.Symbols.generated.hpp;$(ProjectionGeneratedDir)\ProjectionRegistry.generated.inc;$(ProjectionGeneratedDir)\SymbolCatalog.generated.hpp;$(ProjectionGeneratedDir)\SymbolCatalog.generated.inc">
     <MakeDir Directories="$(ProjectionGeneratedDir)" />
-    <Exec Command="&quot;$(ProjectionPython)&quot; --version" IgnoreExitCode="true" ConsoleToMSBuild="true"><Output TaskParameter="ExitCode" PropertyName="ProjectionPythonExitCode" /></Exec>
+    <Exec Command="&quot;$(ProjectionPython)&quot; --version" IgnoreExitCode="true" ConsoleToMSBuild="true">
+      <Output TaskParameter="ExitCode" PropertyName="ProjectionPythonExitCode" />
+    </Exec>
     <Error Condition="'$(ProjectionPythonExitCode)'!='0'" Text="OpenGlass projection generation requires Python 3. Set ProjectionPython to a working python.exe." />
     <Exec Command="&quot;$(ProjectionPython)&quot; &quot;$(ProjectDir)..\Scripts\projection_codegen.py&quot; --repo &quot;$(ProjectDir)..&quot; --architecture legacy --output &quot;$(ProjectionGeneratedDir)&quot;" />
   </Target>
-  <Target Name="CleanProjectionMetadata" AfterTargets="Clean"><RemoveDir Directories="$(ProjectionGeneratedDir)" /></Target>
+  <Target Name="CleanProjectionMetadata" AfterTargets="Clean">
+    <RemoveDir Directories="$(ProjectionGeneratedDir)" />
+  </Target>
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
     <Import Project="..\Common\NuGet.targets" Condition="Exists('..\Common\NuGet.targets')" />
+    <Import Project="..\packages\Microsoft.Build.Tasks.Git.10.0.400\build\Microsoft.Build.Tasks.Git.targets" Condition="Exists('..\packages\Microsoft.Build.Tasks.Git.10.0.400\build\Microsoft.Build.Tasks.Git.targets')" />
+    <Import Project="..\packages\Microsoft.SourceLink.Common.10.0.400\build\Microsoft.SourceLink.Common.targets" Condition="Exists('..\packages\Microsoft.SourceLink.Common.10.0.400\build\Microsoft.SourceLink.Common.targets')" />
+    <Import Project="..\packages\Microsoft.SourceLink.GitHub.10.0.400\build\Microsoft.SourceLink.GitHub.targets" Condition="Exists('..\packages\Microsoft.SourceLink.GitHub.10.0.400\build\Microsoft.SourceLink.GitHub.targets')" />
+    <Import Project="..\packages\KNSoft.NDK.1.2.67-beta\build\KNSoft.NDK.targets" Condition="Exists('..\packages\KNSoft.NDK.1.2.67-beta\build\KNSoft.NDK.targets')" />
+    <Import Project="..\packages\Microsoft.Windows.ImplementationLibrary.1.0.260126.7\build\native\Microsoft.Windows.ImplementationLibrary.targets" Condition="Exists('..\packages\Microsoft.Windows.ImplementationLibrary.1.0.260126.7\build\native\Microsoft.Windows.ImplementationLibrary.targets')" />
+    <Import Project="..\packages\KNSoft.SlimDetours.1.2.2-beta\build\KNSoft.SlimDetours.targets" Condition="Exists('..\packages\KNSoft.SlimDetours.1.2.2-beta\build\KNSoft.SlimDetours.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>闁哄鏅滈悷銉ㄣ亹鐎靛憡濯奸柨娑樺閺嗩剟鏌￠崼锝嗐€冪紒妤€鍊荤槐鎾诲传閸曨厽鐦滃┑顔界缚閸婃繈濡村澶嬪剮妞ゆ棁鍋愮粚鍧楁煟椤剙濡挎繛?NuGet 缂備礁顑呴鍛姳椤撱垹绀岄柛娑卞亐閸嬫捇宕掑▎蹇婃瀼闂佹椿娼块崝澶愬焵椤掍胶缍抲Get 缂備礁顑呴鍛姳椤撱垹绀岄柛娑欏缁犵兘鏌涘Ο鐓庢毐闁逞屽墯缁诲倽銇愰崣澶屸枖閻庯綆鍘界粊浼村级閳哄倻鎳佺紒銊ㄦ缁瑧鈧綆浜炵喊宥夋煕閺嵮勫櫡闁逞屽墮閸婄懓锕㈡笟鈧畷妤呮惞椤愶絿鍑芥繝銏ｅ煐閻喗绌辨繝鍥х畳妞ゆ牓鍊楃粈澶愭偣閸パ冩Щ鐎殿噮鍓涢幉?http://go.microsoft.com/fwlink/?LinkID=322105闂侀潧妫楅崐璇差啅鏉堚晙鐒婇柟瀵稿У閻ｉ亶鏌￠崒姘煑婵炲棎鍨藉?{0}</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Build.Tasks.Git.10.0.400\build\Microsoft.Build.Tasks.Git.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Build.Tasks.Git.10.0.400\build\Microsoft.Build.Tasks.Git.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Build.Tasks.Git.10.0.400\build\Microsoft.Build.Tasks.Git.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Build.Tasks.Git.10.0.400\build\Microsoft.Build.Tasks.Git.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.SourceLink.Common.10.0.400\build\Microsoft.SourceLink.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SourceLink.Common.10.0.400\build\Microsoft.SourceLink.Common.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.SourceLink.Common.10.0.400\build\Microsoft.SourceLink.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SourceLink.Common.10.0.400\build\Microsoft.SourceLink.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.SourceLink.GitHub.10.0.400\build\Microsoft.SourceLink.GitHub.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SourceLink.GitHub.10.0.400\build\Microsoft.SourceLink.GitHub.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.SourceLink.GitHub.10.0.400\build\Microsoft.SourceLink.GitHub.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SourceLink.GitHub.10.0.400\build\Microsoft.SourceLink.GitHub.targets'))" />
+    <Error Condition="!Exists('..\packages\KNSoft.NDK.1.2.67-beta\build\KNSoft.NDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\KNSoft.NDK.1.2.67-beta\build\KNSoft.NDK.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Windows.ImplementationLibrary.1.0.260126.7\build\native\Microsoft.Windows.ImplementationLibrary.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Windows.ImplementationLibrary.1.0.260126.7\build\native\Microsoft.Windows.ImplementationLibrary.targets'))" />
+    <Error Condition="!Exists('..\packages\KNSoft.SlimDetours.1.2.2-beta\build\KNSoft.SlimDetours.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\KNSoft.SlimDetours.1.2.2-beta\build\KNSoft.SlimDetours.targets'))" />
+  </Target>
 </Project>

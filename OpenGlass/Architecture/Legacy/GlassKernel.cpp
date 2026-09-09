@@ -24,6 +24,24 @@ namespace OpenGlass::GlassKernel
 	HRESULT MyResourceHelper_CreateGeometryFromHRGN(HRGN hrgn, uDWM::CRgnGeometryProxy** geometry);
 
 	HRESULT MyIDCompositionDesktopDevice_WaitForCommitCompletion(IDCompositionDesktopDevice* This);
+	HRESULT MyCCachedVisualImage_RenderTargetBitmapInfo_Update(
+		dwmcore::CCachedVisualImage::CCachedTarget* This,
+		const D2D1_RECT_F& rect,
+		dwmcore::DisplayId id,
+		bool unknown,
+		DWM::MilStretch mode
+	);
+	HRESULT MyCCachedVisualImage_CCachedTarget_Update(
+		dwmcore::CCachedVisualImage::CCachedTarget* This,
+		const D2D1_RECT_F& rect,
+		DWM::MilStretch mode,
+		const dwmcore::RenderTargetInfo& info
+	);
+	HRESULT MyCDrawingContext_PreSubgraph(
+		dwmcore::CDrawingContext* This,
+		const dwmcore::CVisualTree* visualTree,
+		bool* conditionalBreak
+	);
 	HRESULT MyCD2DContext_DestroyDeviceResources(dwmcore::CD2DContext* This);
 	HRESULT MyCDesktopManager_ReleaseDXGIAdapter(uDWM::CDesktopManager* This);
 	HRESULT MyCGraphicsDeviceManager_ReleaseGraphicsDevice(PVOID This);
@@ -46,6 +64,9 @@ namespace OpenGlass::GlassKernel
 	Projection::Detour<uDWM::Symbol_CGraphicsDeviceManager_ReleaseGraphicsDevice, &MyCGraphicsDeviceManager_ReleaseGraphicsDevice> g_CGraphicsDeviceManager_ReleaseGraphicsDevice_Org{};
 	Projection::Detour<uDWM::Symbol_CTopLevelWindow_EnsureImages_Pre_18362, &MyCTopLevelWindow_EnsureImages_Pre_W10_1903> g_CTopLevelWindow_EnsureImages_Pre_W10_1903_Org{};
 	Projection::Detour<uDWM::Symbol_CTopLevelWindow_EnsureImages_18362, &MyCTopLevelWindow_EnsureImages_At_Least_W10_1903> g_CTopLevelWindow_EnsureImages_At_Least_W10_1903_Org{};
+	Projection::Detour<dwmcore::Symbol_CDrawingContext_PreSubgraph, &MyCDrawingContext_PreSubgraph> g_CDrawingContext_PreSubgraph_Org{};
+	Projection::Detour<dwmcore::Symbol_CCachedVisualImage_RenderTargetBitmapInfo_Update, &MyCCachedVisualImage_RenderTargetBitmapInfo_Update> g_CCachedVisualImage_RenderTargetBitmapInfo_Update_Org{};
+	Projection::Detour<dwmcore::Symbol_CCachedVisualImage_CCachedTarget_Update, &MyCCachedVisualImage_CCachedTarget_Update> g_CCachedVisualImage_CCachedTarget_Update_Org{};
 
 	UINT g_drawGeometryCommandType{};
 
@@ -115,6 +136,11 @@ namespace OpenGlass::GlassKernel
 				uDWM::CTopLevelWindow::GetWindowFrames()[i]->GetCornerRadius() = radius;
 			}
 		}
+	}
+
+	bool IsCurrentCVIFullyTransparent()
+	{
+		return g_CVIHierarchy && !g_hwnd;
 	}
 }
 
@@ -259,6 +285,59 @@ HRGN WINAPI GlassKernel::MyExtCreateRegion(const XFORM* lpx, DWORD nCount, const
 HRESULT GlassKernel::MyIDCompositionDesktopDevice_WaitForCommitCompletion([[maybe_unused]] IDCompositionDesktopDevice* This)
 {
 	return S_OK;
+}
+
+HRESULT GlassKernel::MyCCachedVisualImage_RenderTargetBitmapInfo_Update(
+	dwmcore::CCachedVisualImage::CCachedTarget* This,
+	const D2D1_RECT_F& rect,
+	dwmcore::DisplayId id,
+	bool unknown,
+	DWM::MilStretch mode
+)
+{
+	g_hwnd = nullptr;
+	g_CVIHierarchy += 1;
+	const auto hr = g_CCachedVisualImage_RenderTargetBitmapInfo_Update_Org(This, rect, id, unknown, mode);
+	g_CVIHierarchy -= 1;
+	g_hwnd = nullptr;
+	return hr;
+}
+
+HRESULT GlassKernel::MyCCachedVisualImage_CCachedTarget_Update(
+	dwmcore::CCachedVisualImage::CCachedTarget* This,
+	const D2D1_RECT_F& rect,
+	DWM::MilStretch mode,
+		const dwmcore::RenderTargetInfo& info
+)
+{
+	g_hwnd = nullptr;
+	g_CVIHierarchy += 1;
+	const auto hr = g_CCachedVisualImage_CCachedTarget_Update_Org(This, rect, mode, info);
+	g_CVIHierarchy -= 1;
+	g_hwnd = nullptr;
+	return hr;
+}
+
+HRESULT GlassKernel::MyCDrawingContext_PreSubgraph(
+	dwmcore::CDrawingContext* This,
+		const dwmcore::CVisualTree* visualTree,
+	bool* conditionalBreak
+)
+{
+	if (g_CVIHierarchy && !g_hwnd)
+	{
+		const auto visual = This->GetCurrentVisualHelper();
+		if (visual)
+		{
+			const auto hwnd = visual->GetTopLevelWindow();
+			if (hwnd)
+			{
+				g_hwnd = hwnd;
+			}
+		}
+	}
+
+	return g_CDrawingContext_PreSubgraph_Org(This, visualTree, conditionalBreak);
 }
 
 HRESULT GlassKernel::MyCD2DContext_DestroyDeviceResources(dwmcore::CD2DContext* This)

@@ -3118,6 +3118,47 @@
       "notes": "CTopLevelWindow::UpdateClientBlur\nxrefs to CRenderDataVisual::AddInstruction"
     },
     {
+      "name": "CTopLevelWindow_GetNonClientVisual_Index",
+      "id": "CTopLevelWindow_GetNonClientVisual_Index",
+      "kind": "field",
+      "type": "CCanvasVisual*",
+      "cases": [
+        {
+          "offset": "32 * sizeof(ULONG_PTR)",
+          "until": {
+            "build": "os::build_w10_2004",
+            "revision": "0"
+          }
+        },
+        {
+          "offset": "33 * sizeof(ULONG_PTR)",
+          "until": {
+            "build": "os::build_w11_21h2",
+            "revision": "0"
+          }
+        },
+        {
+          "offset": "34 * sizeof(ULONG_PTR)",
+          "until": {
+            "build": "os::build_w11_22h2",
+            "revision": "0"
+          }
+        },
+        {
+          "offset": "36 * sizeof(ULONG_PTR)",
+          "until": {
+            "build": "os::build_w11_24h2",
+            "revision": "0"
+          }
+        },
+        {
+          "offset": "31 * sizeof(ULONG_PTR)",
+          "otherwise": true
+        }
+      ],
+      "notes": "CTopLevelWindow::UpdateNCAreaButtonVisuals\nxrefs to CRenderDataVisual::AddInstruction"
+    },
+    {
       "name": "CTopLevelWindow_GetWindowBorder_Index",
       "id": "CTopLevelWindow_GetWindowBorder_Index",
       "kind": "field",
@@ -3793,19 +3834,6 @@
       "notes": "CLivePreview::_UpdateResourcesForMonitor\nCImageLegacyMilBrushProxy::Update(resource[9], resource + 72, ...)"
     },
     {
-      "name": "LivePreviewResource_GetReflectionRegion",
-      "id": "LivePreviewResource_GetReflectionRegion",
-      "kind": "field",
-      "type": "HRGN",
-      "cases": [
-        {
-          "offset": "12 * sizeof(ULONG_PTR)",
-          "otherwise": true
-        }
-      ],
-      "notes": "CLivePreview::_UpdateResourcesForMonitor\n*((QWORD *)resource + 12) = CreateRectRgn(0, 0, 0, 0)"
-    },
-    {
       "name": "LivePreviewResource_GetReflectionGeometry",
       "id": "LivePreviewResource_GetReflectionGeometry",
       "kind": "field",
@@ -3817,32 +3845,6 @@
         }
       ],
       "notes": "CLivePreview::_UpdateResourcesForMonitor\nResourceHelper::CreateGeometryFromHRGN(resource[12], (CRgnGeometryProxy\n**)resource + 13)"
-    },
-    {
-      "name": "LivePreviewResource_IsWindowBoundingRectNotEmpty_Index",
-      "id": "LivePreviewResource_IsWindowBoundingRectNotEmpty_Index",
-      "kind": "field",
-      "type": "bool*",
-      "cases": [
-        {
-          "offset": "128",
-          "otherwise": true
-        }
-      ],
-      "notes": "CLivePreview::_UpdateResourcesForMonitor\n*((BYTE *)resource + 128) = !IsRectEmpty(resource)"
-    },
-    {
-      "name": "LivePreviewResource_IsGlassBoundingRectNotEmpty_Index",
-      "id": "LivePreviewResource_IsGlassBoundingRectNotEmpty_Index",
-      "kind": "field",
-      "type": "bool*",
-      "cases": [
-        {
-          "offset": "129",
-          "otherwise": true
-        }
-      ],
-      "notes": "CLivePreview::_UpdateResourcesForMonitor\n*((BYTE *)resource + 129) = !IsRectEmpty((const RECT *)((char *)resource +\n40))"
     },
     {
       "name": "CDesktopManager_GetLivePreview_Index",

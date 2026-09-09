@@ -38,7 +38,7 @@ For each sample:
 7. Cross-check with an independent function or constructor. If unavailable, mark the result provisional.
 8. Separate absence of an exact PDB name match from absence of a class, member, interface, or capability.
 
-For dwmcore-specific anchors and fallbacks, read [dwmcore.md](references/dwmcore.md). For uDWM-specific anchors and class transitions, read [udwm.md](references/udwm.md). Read only the relevant module reference for a focused request.
+For dwmcore-specific anchors and fallbacks, read [dwmcore.md](references/dwmcore.md). For uDWM-specific anchors and class transitions, read [udwm.md](references/udwm.md). For Aero Peek, LivePreview, reflection, or highlight regressions, read both because uDWM owns preview resource/highlight setup while dwmcore owns draw-list/reflection repair. Read only the relevant module reference for other focused requests.
 
 ## Propose changes safely
 

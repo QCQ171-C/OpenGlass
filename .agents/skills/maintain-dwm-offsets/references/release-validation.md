@@ -33,6 +33,7 @@ Do not perform first injection through the machine's only remote connection or i
 | RV-08 | Uninstall | Service and injection are removed; both retain-config and delete-config paths behave as selected |
 | RV-09 | GPU residency | Interactive effects and normal desktop use remain stable for the declared test duration |
 | RV-10 | Unsupported or damaged input | Mismatched versions, symbols, or artifact pairs are rejected without injection or DWM failure |
+| RV-11 | Aero Peek high-glass preview | Hover taskbar thumbnails, change peek target, and open jump lists; all preview clones remain visible, selected preview uses active highlight, non-selected previews use inactive highlight, reflection remains present, and no duplicate full-screen reflection atlas is drawn |
 
 For a new right boundary, run the relevant scenarios on a supported version immediately before the boundary, the first available version at or after it, and the newest version included in the support claim. A screenshot of an idle desktop is not runtime coverage. `OpenGlassRenderTest.exe` is an interactive GPU exercise, not an automated test.
 

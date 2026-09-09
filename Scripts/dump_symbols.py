@@ -62,7 +62,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 		"--output",
 		type=str,
 		default=DEFAULT_SYMBOL_CACHE,
-		help=f"local symbol-server cache directory (default: {DEFAULT_SYMBOL_CACHE})",
+		help=f"local symbol-server cache directory (default: {DEFAULT_SYMBOL_CACHE.replace('%', '%%')})",
 	)
 	parser.add_argument("--grep", dest="pattern", help="substring filter applied to complete undecorated names")
 	parser.add_argument("--ignore-case", action="store_true", help="make --grep case-insensitive")
