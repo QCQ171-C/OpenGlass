@@ -166,6 +166,67 @@ namespace OpenGlass::CaptionTextHandler
 	int g_textGlowSize{};
 	int g_textGlowIntensity{};
 	int g_centerCaption{ 0 };
+
+	// Win7 measures caption glyphs at a uniform 6x scale before creating the
+	// 1x bitmap. Use the same scaled average width when sizing the caption.
+	wil::unique_hfont CreateWin7ScaledFont(HDC referenceDC, HDC targetDC)
+	{
+		LOGFONTW captionFont{};
+		if (!GetObjectW(GetCurrentObject(referenceDC, OBJ_FONT), sizeof(captionFont), &captionFont))
+		{
+			return {};
+		}
+
+		LOGFONTW measureFont{ captionFont };
+		measureFont.lfHeight *= 6;
+		measureFont.lfWidth *= 6;
+		wil::unique_hfont scaledFont{ CreateFontIndirectW(&measureFont) };
+		if (!scaledFont)
+		{
+			return {};
+		}
+
+		const HGDIOBJ previousFont{ SelectObject(targetDC, scaledFont.get()) };
+		TEXTMETRICW textMetrics{};
+		const bool measured{ GetTextMetricsW(targetDC, &textMetrics) != FALSE };
+		SelectObject(targetDC, previousFont);
+		if (!measured)
+		{
+			return {};
+		}
+
+		LOGFONTW renderFontInfo{ captionFont };
+		renderFontInfo.lfWidth = textMetrics.tmAveCharWidth;
+		return wil::unique_hfont{ CreateFontIndirectW(&renderFontInfo) };
+	}
+
+	LONG MeasureWin7ScaledTextWidth(HDC hdc, LPCWSTR lpchText, int cchText, UINT format)
+	{
+		wil::unique_hdc measureDC{ CreateCompatibleDC(nullptr) };
+		if (!measureDC)
+		{
+			return 0;
+		}
+
+		const auto renderFont{ CreateWin7ScaledFont(hdc, measureDC.get()) };
+		if (!renderFont)
+		{
+			return 0;
+		}
+
+		const HGDIOBJ previousFont{ SelectObject(measureDC.get(), renderFont.get()) };
+		RECT textRect{};
+		g_DrawTextW_Org(
+			measureDC.get(),
+			lpchText,
+			cchText,
+			&textRect,
+			(format & ~(DT_END_ELLIPSIS | DT_WORD_ELLIPSIS)) | DT_CALCRECT
+		);
+		SelectObject(measureDC.get(), previousFont);
+		return (textRect.right + 5) / 6;
+	}
+
 	int CaptionCenterOffset(double visualWidth, double textWidth, double visualX, double parentWidth, double scale)
 	{
 		const int localOffset = std::max(
@@ -207,6 +268,7 @@ int WINAPI CaptionTextHandler::MyDrawTextW(
 
 	if ((format & DT_CALCRECT))
 	{
+		const LONG availableWidth{ wil::rect_width(*lprc) };
 		result = g_DrawTextW_Org(hdc, lpchText, cchText, lprc, format);
 
 		if ((format & DT_END_ELLIPSIS) != 0)
@@ -216,6 +278,12 @@ int WINAPI CaptionTextHandler::MyDrawTextW(
 			g_isTrimmed = wil::rect_width(*lprc) < wil::rect_width(rawTextRect);
 		}
 
+		const LONG scaledExtent{ MeasureWin7ScaledTextWidth(hdc, lpchText, cchText, format & ~DT_CALCRECT) };
+		if (scaledExtent > 0 && scaledExtent <= availableWidth)
+		{
+			lprc->right = lprc->left + scaledExtent;
+		}
+
 		return result;
 	}
 	// clear the background, so the text can be shown transparent
@@ -223,7 +291,7 @@ int WINAPI CaptionTextHandler::MyDrawTextW(
 	BITMAP bmp{};
 	if (GetObjectW(GetCurrentObject(hdc, OBJ_BITMAP), sizeof(bmp), &bmp) && bmp.bmBits)
 	{
-		memset(bmp.bmBits, 0, 4 * bmp.bmWidth * bmp.bmHeight);
+		memset(bmp.bmBits, 0, static_cast<size_t>(bmp.bmWidth) * bmp.bmHeight * 4);
 	}
 
 	OffsetRect(lprc, g_textGlowSize, g_textGlowSize);
