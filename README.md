@@ -49,6 +49,7 @@ The `main` branch is also built and tested by GitHub Actions. Its downloadable `
 
 ## Credits
 
+- [Highlight and Caption Rending Fix]: by [@arceuss](https://github.com/arceuss).
 - [Banner for OpenGlass](https://github.com/ALTaleX531/OpenGlass/discussions/11) by [@aubymori](https://github.com/aubymori), using [metalheart jawn #2](https://www.deviantart.com/kfh83/art/metalheart-jawn-2-1068250045) by [@kfh83](https://github.com/kfh83)
 - [[MS-RDPCR2]: Remote Desktop Protocol: Composited Remoting V2](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpcr2)
 - [KNSoft.SlimDetours](https://github.com/KNSoft/KNSoft.SlimDetours)
